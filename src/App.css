@@ -31,11 +31,11 @@ box-shadow: inset 1.02px 2.04px 51px #001D6E;
 border-radius: 50%;
 }
 .circle {
-  height: 82px;
-  width: 82px;
+  height: 140px;
+  width: 140px;
   background: linear-gradient(92.7deg, #5404FF 7.9%, #BA2AD1 88.1%);
 box-shadow: inset 1.4px 2.8px 70px #001D6E;
-filter: blur(144px);
+filter: blur(100px);
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
