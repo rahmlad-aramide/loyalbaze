@@ -97,10 +97,10 @@ function App() {
         <div className='ellipse1 absolute top-[7rem] left-[5%] z-10'></div>
         <div className='ellipse2 absolute right-0 top-20 md:top-28 md:right-[20%]'></div>
         <div className='ellipse3 absolute top-[25rem] -right-[7rem] md:-right-[5%] z-10'></div>
-        <div className='flex absolute top-[8.5rem] right-[62%] z-10 justify-center ml-[30%]'>
+        <div className='flex absolute top-[5rem] md:top-[8.5rem] right-[62%] z-10 justify-center ml-[30%]'>
           <img src={star} alt='star' className='h-7' />
         </div>
-        <div className='flex absolute bottom-[6rem] right-[4%] z-10 justify-center ml-[90%]'>
+        <div className='hidden sm:flex absolute bottom-[6rem] right-[4%] z-10 justify-center ml-[90%]'>
           <img src={star} alt='star' className='h-7' />
         </div>
         <div className='flex absolute bottom-[3rem] right-[4%] z-10 justify-center mr-[90%]'>
