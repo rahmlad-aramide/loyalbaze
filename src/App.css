@@ -23,6 +23,28 @@
 .box-shadow {
   box-shadow: inset 0px -1px 8px #000000;
 }
+.ellipse1 {
+  height: 102px;
+  width: 102px;
+  background: linear-gradient(92.7deg, #5404FF 7.9%, #BA2AD1 88.1%);
+box-shadow: inset 1.02px 2.04px 51px #001D6E;
+border-radius: 50%;
+}
+.ellipse2 {
+  height: 62px;
+  width: 62px;
+  background: linear-gradient(92.7deg, #5404FF 7.9%, #BA2AD1 88.1%);
+box-shadow: inset 1.02px 2.04px 25px #001D6E;
+border-radius: 50%;
+}
+.ellipse3 {
+  height: 162px;
+  width: 162px;
+  background: linear-gradient(92.7deg, #5404FF 7.9%, #BA2AD1 88.1%);
+box-shadow: inset 4px 8px 50px #001D6E;
+filter: blur(5px);
+border-radius: 50%;
+}
 .ellipse {
   height: 82px;
   width: 82px;
@@ -36,6 +58,11 @@ border-radius: 50%;
   background: linear-gradient(92.7deg, #5404FF 7.9%, #BA2AD1 88.1%);
 box-shadow: inset 1.4px 2.8px 70px #001D6E;
 filter: blur(100px);
+}
+.matrix {
+  /* Andriod blue */
+border: 4.08183px solid #175CE1;
+transform: matrix(0.79, 0.62, -0.69, 0.72, 0, 0);
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
