@@ -204,21 +204,23 @@ function App() {
               <div className='flex justify-center ml-[90%] -mt-10 mb-10 md:-mr-40'>
                 <img src={star} alt='Line' className='h-7' />
               </div>
-              <h1 className='text-[50px] font-medium text-center'>Priority Access</h1>
+              <h1 className='text-[40px] md:text-[50px] font-medium text-center'>Priority Access</h1>
               <div className='flex justify-center -mt-1'>
                 <img src={line} alt='Line' className='h-12' />
               </div>
-              <p className='max-w-[31ch] mt-3 mb-8 md:mb-0'>
-                Get ready to revolutionize the way you interact with your
-                customers and drive sales with Loyalbaze. Skip the waitlist and
-                get exclusive priority access to LoyalBaze. Limited slots
-                available. Please tell us a bit about your business and needs and
-                of our consultants will be in touch Immediately!
-              </p>
+              <div className='flex justify-center'>
+                <p className='w-[90%] max-w-[31ch] mt-3 mb-8 md:mb-0'>
+                  Get ready to revolutionize the way you interact with your
+                  customers and drive sales with Loyalbaze. Skip the waitlist and
+                  get exclusive priority access to LoyalBaze. Limited slots
+                  available. Please tell us a bit about your business and needs and
+                  of our consultants will be in touch Immediately!
+                </p>
+              </div>
             </div>
           </div>
           <div className='flex w-full justify-center items-center md:w-1/2'>
-            <div className='bg-[#1D2939] mx-auto w-[85%] max-w-[533px] p-10 rounded-xl'>
+            <div className='bg-[#1D2939] mx-auto w-[85%] max-w-[533px] p-5 md:p-10 rounded-xl'>
               <h2 className='pb-6'>
                 Book a Consultation with us
               </h2>
