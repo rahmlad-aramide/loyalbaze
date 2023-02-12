@@ -7,10 +7,43 @@
 .border-gradient {
   width: fit-content;
   height: auto;
-  padding: 4px 16px;
   border: double 0.5px transparent;
-  border-radius: 100px;
   background-image: linear-gradient(var(--primary), var(--primary)), radial-gradient(circle at top left, var(--secondary), var(--tertiary));
   background-origin: border-box;
   background-clip: padding-box, border-box;
+}
+.rounded-border-gradient {
+  border-radius: 100px;
+  padding: 4px 16px;
+}
+.bar-border-gradient {
+  border-radius: 10px;
+  padding: 8px;
+}
+.box-shadow {
+  box-shadow: inset 0px -1px 8px #000000;
+}
+.ellipse {
+  height: 82px;
+  width: 82px;
+  background: linear-gradient(92.7deg, #5404FF 7.9%, #BA2AD1 88.1%);
+box-shadow: inset 1.02px 2.04px 51px #001D6E;
+border-radius: 50%;
+}
+.circle {
+  height: 82px;
+  width: 82px;
+  background: linear-gradient(92.7deg, #5404FF 7.9%, #BA2AD1 88.1%);
+box-shadow: inset 1.4px 2.8px 70px #001D6E;
+filter: blur(144px);
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
