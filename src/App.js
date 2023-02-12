@@ -8,13 +8,14 @@ import star from './Assets/filled-star.svg'
 
 import {HiOutlineUserCircle} from 'react-icons/hi';
 import {HiOutlineEnvelope} from 'react-icons/hi2';
-import {ImCheckmark} from 'react-icons/im';
 import {FaTimes, FaBars} from 'react-icons/fa';
 
 import { consultData, countries } from './data';
+import Modal from './Components/Modal';
 
 function App() {
   const formRef = useRef();
+  const priorityFormRef = useRef();
   const navRef = useRef();
   const [modal, setModal] = useState(false);
   const [priorityModal, setPriorityModal] = useState(false);
@@ -23,19 +24,22 @@ function App() {
     e.preventDefault();
     setModal(true)
     for (let i = 0; i < 2; i++) {
-      formRef.current[i].value = '';
+      formRef.current[i].value = "";
     }
   }
   const handleSubmitPriority = (e) => {
     e.preventDefault();
     setPriorityModal(true)
-    for (let i = 0; i < 2; i++) {
-      formRef.current[i].value = '';
+    for (let i = 0; i < 6; i++) {
+      if(i===4){
+        priorityFormRef.current[i].value = "Nigeria";
+      } 
+      else {
+        priorityFormRef.current[i].value = "";
+      }
     }
   }
-  const closeModal = () => {
-    setModal(false);
-  }
+  
   const handleNav = () => {
     navRef.current.classList.toggle('translate-x-full')
   }
@@ -113,39 +117,39 @@ function App() {
           >
             <div className="flex items-center w-[90%] max-w-[325px] rounded border p-1 mb-6">
               <label htmlFor="name">
-                <HiOutlineUserCircle size={20} className="mx-1" />
+                <HiOutlineUserCircle size={25} className="mx-1" />
               </label>
               <input
                 id="name"
                 name="name"
                 type="text"
-                className="bg-transparent outline-none w-full"
+                className="bg-transparent outline-none w-full p-1"
                 placeholder="Tell us your name"
                 required
               />
             </div>
             <div className="flex items-center w-[90%] max-w-[325px] rounded border p-1 mb-6">
               <label htmlFor="email">
-                <HiOutlineEnvelope size={20} className="mx-1" />
+                <HiOutlineEnvelope size={25} className="mx-1" />
               </label>
               <input
                 id="email"
                 name="email"
                 type="email"
-                className="bg-transparent outline-none w-full"
+                className="bg-transparent outline-none w-full p-1"
                 placeholder="Enter your email address"
                 required
               />
             </div>
             <div className="w-[90%] max-w-[325px] mb-6">
               <button
-                className="w-[100%] rounded-full bg-gradient-to-r from-secondary to-tertiary py-[4px] hover:scale-95 transition duration-200"
+                className="w-[100%] rounded-full bg-gradient-to-r from-secondary to-tertiary py-[6px] hover:scale-95 transition duration-200"
                 type="submit"
               >
                 Get early access
               </button>
             </div>
-            <div className="flex cursor-pointer">
+            <div className="flex cursor-pointer mb-0 md:mb-6">
               <div>
                 <span className="bg-[#175CE1] rounded-full px-2 py-1">G</span>
                 <span className="bg-[#A75FD2] rounded-full px-2 py-1 -ml-[5px]">
@@ -163,35 +167,7 @@ function App() {
           </form>
         </div>
         {modal && (
-          <div
-            onClick={closeModal}
-            className="flex justify-center items-center fixed h-screen w-screen top-0 bg-primary/50"
-          >
-            <div className="flex justify-center items-center">
-              <div className="flex flex-col items-center px-4 md:px-8 py-16 bg-[#15141B] rounded-[20px] w-[90%] max-w-[446px] p-4 relative">
-                <div
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 cursor-pointer hover:scale-90 transition duration-200"
-                >
-                  <FaTimes size={25} />
-                </div>
-                <div>
-                  <div className="border-[#ffffff33] border-[10px] mb-8 w-fit rounded-full">
-                    <div className="bg-[#20AC5B] rounded-full p-4 box-shadow">
-                      <ImCheckmark size={40} />
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h2 className="font-bold text-2xl py-3">Congratulations</h2>
-                  <p className="max-w-[35ch]">
-                    Great move! You're one step closer to getting your hands on
-                    the product. Please check your mail for more information.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Modal setModal={setModal} />
         )}
       </section>
       <section id="priority-access" className="min-h-screen">
@@ -229,19 +205,19 @@ function App() {
             </div>
           </div>
           <div className='flex w-full justify-center items-center md:w-1/2'>
-            <form onsubmit={handleSubmitPriority} className='bg-[#1D2939] mx-auto w-[85%] max-w-[533px] p-5 md:p-10 mb-6 md:mb-0 rounded-xl'>
+            <form ref={priorityFormRef} onSubmit={handleSubmitPriority} className='bg-[#1D2939] mx-auto w-[85%] max-w-[533px] p-5 md:p-10 mb-6 md:mb-0 rounded-xl'>
               <h2 className='pb-6'>
                 Book a Consultation with us
               </h2>
-              {consultData.map(item=> (
-                <div className='pb-6'>
+              {consultData.map((item, index)=> (
+                <div key={index} className='pb-6'>
                   <input type={item.type} placeholder={item.placeholder} className='bg-transparent border py-[6px] px-3 outline-none focus:border-[#fff] border-[#ddd]/50 rounded-lg w-full' required />
                 </div>
               ))}
               <div>
                 <select className='bg-transparent color-transparent border py-[6px] px-3 outline-none focus:border-[#fff] border-[#ddd]/50 rounded-lg w-full' required>
-                  {countries.map(country=>(
-                    <option className='bg-primary'>{country}</option>
+                  {countries.map((country, index)=>(
+                    <option key={index} className='bg-primary'>{country}</option>
                   ))}
                 </select>
               </div>
@@ -250,7 +226,7 @@ function App() {
               </div>
               <div className="mt-6 ">
                 <button
-                  className="w-[100%] rounded-full bg-gradient-to-r from-secondary to-tertiary py-[4px] hover:scale-95 transition duration-200"
+                  className="w-[100%] rounded-full bg-gradient-to-r from-secondary to-tertiary py-[6px] hover:scale-95 transition duration-200"
                   type="submit"
                 >
                   Send Request
@@ -260,35 +236,7 @@ function App() {
           </div>
         </div>
         {priorityModal && (
-          <div
-            onClick={closeModal}
-            className="flex justify-center items-center fixed h-screen w-screen top-0 bg-primary/50"
-          >
-            <div className="flex justify-center items-center">
-              <div className="flex flex-col items-center px-4 md:px-8 py-16 bg-[#15141B] rounded-[20px] w-[90%] max-w-[446px] p-4 relative">
-                <div
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 cursor-pointer hover:scale-90 transition duration-200"
-                >
-                  <FaTimes size={25} />
-                </div>
-                <div>
-                  <div className="border-[#ffffff33] border-[10px] mb-8 w-fit rounded-full">
-                    <div className="bg-[#20AC5B] rounded-full p-4 box-shadow">
-                      <ImCheckmark size={40} />
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h2 className="font-bold text-2xl py-3">Congratulations</h2>
-                  <p className="max-w-[35ch]">
-                    Great move! You're one step closer to getting your hands on
-                    the product. Please check your mail for more information.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Modal setPriorityModal={setPriorityModal} />
         )}
       </section>
     </div>
