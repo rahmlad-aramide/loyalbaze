@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { HashLink } from 'react-router-hash-link';
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import './App.css';
 import logo from './Assets/logo.svg';
 import line from './Assets/line.svg';
@@ -65,7 +65,6 @@ function App() {
           >
             <HashLink smooth to={"#priority-access"}>
               <button 
-              
               className="border-gradient rounded-border-gradient hover:scale-90 transition duration-200">
                 Get Priority Access
               </button>
@@ -233,7 +232,7 @@ function App() {
             </div>
           </motion.form>
         </div>
-        {modal && <Modal setModal={setModal} />}
+        {modal && <AnimatePresence><Modal setModal={setModal}/></AnimatePresence>}
       </section>
       <motion.section
         initial={{ opacity: 0, scale: 0 }}
@@ -326,7 +325,7 @@ function App() {
             </form>
           </div>
         </div>
-        {priorityModal && <Modal setPriorityModal={setPriorityModal} />}
+        {priorityModal &&  <AnimatePresence><Modal setPriorityModal={setPriorityModal} /></AnimatePresence>}
       </motion.section>
       <Footer />
     </div>

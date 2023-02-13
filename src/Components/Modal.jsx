@@ -1,5 +1,5 @@
 import React from 'react'
-// import {motion, AnimatePresence} from 'framer-motion'
+import { motion } from 'framer-motion'
 import { FaTimes } from 'react-icons/fa'
 import { ImCheckmark } from 'react-icons/im'
 
@@ -14,7 +14,12 @@ const Modal = ({setModal, setPriorityModal}) => {
             className="flex justify-center items-center fixed h-screen w-screen z-[900] top-0 bg-primary/50"
           >
             <div className="flex justify-center items-center">
-              <div className="flex flex-col items-center px-4 md:px-8 py-16 bg-[#15141B] rounded-[20px] w-[90%] max-w-[446px] p-4 relative">
+              <motion.div
+              initial={{ y: '-100vh' }}
+              animate={{ y: 0 }}
+              transition={{ stiffness: 200, type: 'spring' }}
+              exit={{y: '-100vh'}}
+              className="flex flex-col items-center px-4 md:px-8 py-16 bg-[#15141B] rounded-[20px] w-[90%] max-w-[446px] p-4 relative">
                 <div
                   onClick={closeModal}
                   className="absolute top-4 right-4 cursor-pointer hover:scale-90 transition duration-200"
@@ -35,7 +40,7 @@ const Modal = ({setModal, setPriorityModal}) => {
                     the product. Please check your mail for more information.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
   )
