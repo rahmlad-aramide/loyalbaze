@@ -1,10 +1,15 @@
 import React from 'react'
 import {RiHome8Fill} from 'react-icons/ri'
 import {MdPhoneInTalk} from 'react-icons/md'
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <div className='flex justify-center'>
+    <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 2 }}
+    className='flex justify-center'>
         <div className="flex w-[90%] justify-center flex-col">
             <div className="h-[1px] w-full mt-4 bg-[#fff]"></div>
             <div className="flex flex-col md:grid md:grid-cols-3 my-6">
@@ -22,7 +27,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+// import {motion, AnimatePresence} from 'framer-motion'
 import { FaTimes } from 'react-icons/fa'
 import { ImCheckmark } from 'react-icons/im'
 
