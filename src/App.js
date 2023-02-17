@@ -1,146 +1,77 @@
-import { useState, useRef } from 'react';
-import { HashLink } from 'react-router-hash-link';
-import { AnimatePresence, motion } from 'framer-motion'
-import './App.css';
-import logo from './Assets/logo.svg';
-import line from './Assets/line.svg';
-import emptyStar from './Assets/empty-star.svg'
-import star from './Assets/filled-star.svg'
-import Matrix from './Assets/matrix.svg'
+import { useState, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import "./App.css";
+import line from "./Assets/line.svg";
+import emptyStar from "./Assets/empty-star.svg";
+import star from "./Assets/filled-star.svg";
+import Matrix from "./Assets/matrix.svg";
 
-import {HiOutlineUserCircle} from 'react-icons/hi';
-import {HiOutlineEnvelope} from 'react-icons/hi2';
-import {FaTimes, FaBars} from 'react-icons/fa';
+import { HiOutlineUserCircle } from "react-icons/hi";
+import { HiOutlineEnvelope } from "react-icons/hi2";
 
-import { consultData, countries } from './data';
-import Modal from './Components/Modal';
-import Footer from './Components/Footer';
+import { consultData, countries } from "./data";
+import { Button, Ellipses, Footer, Joiners, Modal, Navbar } from "./Components";
 
 function App() {
   const formRef = useRef();
   const priorityFormRef = useRef();
-  const navRef = useRef();
+
   const [modal, setModal] = useState(false);
   const [priorityModal, setPriorityModal] = useState(false);
 
   const handleSubmitEarly = (e) => {
     e.preventDefault();
-    setModal(true)
+    setModal(true);
     for (let i = 0; i < 2; i++) {
       formRef.current[i].value = "";
     }
-  }
+  };
   const handleSubmitPriority = (e) => {
     e.preventDefault();
-    setPriorityModal(true)
+    setPriorityModal(true);
     for (let i = 0; i < 6; i++) {
-      if(i===4){
+      if (i === 4) {
         priorityFormRef.current[i].value = "Nigeria";
-      } 
-      else {
+      } else {
         priorityFormRef.current[i].value = "";
       }
     }
-  }
-  
-  const handleNav = () => {
-    navRef.current.classList.toggle('translate-x-full')
-  }
+  };
+
   return (
     <div className="bg-primary text-light">
-      <div className="h-[60px] md:h-[90px] backdrop-blur z-[900] fixed w-full"></div>
-      <div className="flex justify-between items-center fixed z-[999] py-auto w-full pr-[5%] pl-[5%] px-0 md:px-[50px] h-fit pt-2 md:h-[90px]">
-        <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 100, scale: 1 }} 
-        transition={{delay: 0.1, duration: 1.5}}
-        className="h-fit">
-          <img src={logo} alt="Loyalbaze" className="h-[45px] md:h-[50px]" />
-        </motion.div>
-        <div className="hidden md:flex">
-          <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          >
-            <HashLink smooth to={"#priority-access"}>
-              <button 
-              className="border-gradient rounded-border-gradient hover:scale-90 transition duration-200">
-                Get Priority Access
-              </button>
-            </HashLink>
-          </motion.div>
-        </div>
-        <div className="flex md:hidden">
-          <motion.button
-            initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-            onClick={handleNav}
-            className="border-gradient bar-border-gradient hover:scale-90 transition duration-200"
-          >
-            <FaBars size={25} />
-          </motion.button>
-          <div
-            ref={navRef}
-            className="flex flex-col justify-center items-center translate-x-full transition duration-200 fixed top-0 right-0 h-screen w-[70%] backdrop-blur"
-          >
-            <button
-              ref={navRef}
-              onClick={handleNav}
-              className="absolute top-4 right-4 border-gradient bar-border-gradient hover:scale-90 transition duration-200"
-            >
-              <FaTimes size={25} />
-            </button>
-            <div>
-              <HashLink smooth to={"#early-access"}>
-                <button className="border-gradient mb-8 bar-border-gradient hover:scale-90 transition duration-200">
-                  Get Early Access
-                </button>
-              </HashLink>
-            </div>
-            <div>
-              <HashLink smooth to={"#priority-access"}>
-                <button className="border-gradient bar-border-gradient hover:scale-90 transition duration-200">
-                  Get Priority Access
-                </button>
-              </HashLink>
-            </div>
-          </div>
-        </div>
-      </div>
-      <section
-        id="top"
-        className="min-h-screen relative overflow-x-hidden"
-      >
-        <motion.div 
-         animate={{x: 0}}
-         initial={{x: '-50vw'}}
-         transition={{delay: 1.5, duration: 2}} 
-         className="ellipse1 absolute top-[7rem] left-[5%] z-10"></motion.div>
-        <motion.div 
-         animate={{x: 0}}
-         initial={{x: '50vw'}}
-         transition={{delay: 1.5, duration: 2}} 
-         className="ellipse2 absolute right-0 top-20 md:top-28 md:right-[20%]"></motion.div>
-        <motion.div 
-         animate={{x: 0}}
-         initial={{x: '50vw'}}
-         transition={{delay: 1.5, duration: 2}} 
-         className="ellipse3 absolute top-[25rem] -right-[7rem] md:-right-[5%] z-10">
-        </motion.div>
+      <Navbar />
+      <section id="top" className="min-h-screen relative overflow-x-hidden">
+        <Ellipses />
         <div className="flex absolute top-[5rem] md:top-[8.5rem] right-[62%] z-10 justify-center ml-[30%]">
           <motion.img
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 100, scale: 1 }}
-          transition={{ duration: 1, delay: 2 }}
-          src={star} alt="star" className="h-7" />
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 100, scale: 1 }}
+            transition={{ duration: 1, delay: 2 }}
+            src={star}
+            alt="star"
+            className="h-7"
+          />
         </div>
         <div className="hidden sm:flex absolute bottom-[6rem] right-[4%] z-10 justify-center ml-[90%]">
-          <img src={star} alt="star" className="h-7" />
+          <motion.img
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 100, scale: 1 }}
+            transition={{ duration: 1, delay: 2 }}
+            src={star}
+            alt="star"
+            className="h-7"
+          />
         </div>
         <div className="flex absolute bottom-[3rem] right-[4%] z-10 justify-center mr-[90%]">
-          <img src={star} alt="star" className="h-7" />
+          <motion.img
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 100, scale: 1 }}
+            transition={{ duration: 1, delay: 2 }}
+            src={star}
+            alt="star"
+            className="h-7"
+          />
         </div>
         <div className="min-h-screen h-full mt-0 pt-[100px] md:pt-[150px] my-10 md:my-0 flex justify-center flex-col">
           <div className="flex flex-col items-center">
@@ -176,10 +107,14 @@ function App() {
             onSubmit={handleSubmitEarly}
           >
             <div className="static md:absolute md:left-[63%] h-24 -mt-4 md:-mt-7">
-              <motion.img 
-               initial={{ opacity: 0, scale: 0 }}
-               animate={{ opacity: 100, scale: 1 }} 
-               transition={{delay: 1.5, duration: 1.5}} src={Matrix} alt="matrix" className="h-20" />
+              <motion.img
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 100, scale: 1 }}
+                transition={{ delay: 1.5, duration: 1.5 }}
+                src={Matrix}
+                alt="matrix"
+                className="h-20"
+              />
             </div>
             <div className="flex items-center w-[90%] max-w-[325px] rounded border p-1 mb-6">
               <label htmlFor="name">
@@ -208,31 +143,16 @@ function App() {
               />
             </div>
             <div className="w-[90%] max-w-[325px] mb-6">
-              <button
-                className="w-[100%] rounded-full bg-gradient-to-r from-secondary to-tertiary py-[6px] hover:scale-95 transition duration-200"
-                type="submit"
-              >
-                Get early access
-              </button>
+              <Button>Get early access</Button>
             </div>
-            <div className="flex cursor-pointer mb-0 md:mb-6">
-              <div>
-                <span className="bg-[#175CE1] rounded-full px-2 py-1">G</span>
-                <span className="bg-[#A75FD2] rounded-full px-2 py-1 -ml-[5px]">
-                  O
-                </span>
-                <span className="bg-[#175CE1] rounded-full px-2 py-1 -ml-[5px]">
-                  U
-                </span>
-                <span className="bg-[#A75FD2] rounded-full px-2 py-1 -ml-[5px] mr-2">
-                  M
-                </span>
-              </div>
-              <div>+57 Joined</div>
-            </div>
+            <Joiners />
           </motion.form>
         </div>
-        {modal && <AnimatePresence><Modal setModal={setModal}/></AnimatePresence>}
+        {modal && (
+          <AnimatePresence>
+            <Modal setModal={setModal} />
+          </AnimatePresence>
+        )}
       </section>
       <motion.section
         initial={{ opacity: 0, scale: 0 }}
@@ -315,17 +235,16 @@ function App() {
                 />
               </div>
               <div className="mt-6 mb-2">
-                <button
-                  className="w-[100%] rounded-full bg-gradient-to-r from-secondary to-tertiary py-[6px] hover:scale-95 transition duration-200"
-                  type="submit"
-                >
-                  Send Request
-                </button>
+                <Button>Send Request</Button>
               </div>
             </form>
           </div>
         </div>
-        {priorityModal &&  <AnimatePresence><Modal setPriorityModal={setPriorityModal} /></AnimatePresence>}
+        {priorityModal && (
+          <AnimatePresence>
+            <Modal setPriorityModal={setPriorityModal} />
+          </AnimatePresence>
+        )}
       </motion.section>
       <Footer />
     </div>
